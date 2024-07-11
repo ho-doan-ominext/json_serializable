@@ -28,7 +28,7 @@ class BaseResponse<T> {
       _$BaseResponseFromJson(json);
 
   /// Decodes [json] by "inspecting" its contents.
-  static T _dataFromJson<T>(Object json) {
+  static T _dataFromJson<T>(Object? json) {
     if (json is Map<String, dynamic>) {
       if (json.containsKey('email')) {
         return User.fromJson(json) as T;
@@ -57,16 +57,16 @@ class BaseResponse<T> {
 
 @JsonSerializable(createToJson: false)
 class Article {
-  final int id;
-  final String title;
+  final int? id;
+  final String? title;
 
   final User? author;
 
   final List<Comment>? comments;
 
   const Article({
-    required this.id,
-    required this.title,
+    this.id,
+    this.title,
     this.author,
     this.comments,
   });

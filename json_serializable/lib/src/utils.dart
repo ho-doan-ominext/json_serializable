@@ -234,21 +234,24 @@ String? defaultDecodeLogic(
 }) {
   if (targetType.isDartCoreObject && !targetType.isNullableType) {
     final question = defaultProvided ? '?' : '';
-    return '$expression as Object$question';
+    return '$expression is Object$question ?'
+        ' $expression as Object$question : null';
   } else if (targetType.isDartCoreObject || targetType is DynamicType) {
     // just return it as-is. We'll hope it's safe.
     return expression;
   } else if (targetType.isDartCoreDouble) {
     final targetTypeNullable = defaultProvided || targetType.isNullableType;
     final question = targetTypeNullable ? '?' : '';
-    return '($expression as num$question)$question.toDouble()';
+    return '($expression is num$question ? $expression '
+        'as num$question)$question.toDouble() : null';
   } else if (targetType.isDartCoreInt) {
     final targetTypeNullable = defaultProvided || targetType.isNullableType;
     final question = targetTypeNullable ? '?' : '';
-    return '($expression as num$question)$question.toInt()';
+    return '$expression is num$question ? ($expression '
+        'as num$question)$question.toInt() : null';
   } else if (simpleJsonTypeChecker.isAssignableFromType(targetType)) {
     final typeCode = typeToCode(targetType, forceNullable: defaultProvided);
-    return '$expression as $typeCode';
+    return '$expression is $typeCode ? $expression as $typeCode : null';
   }
 
   return null;

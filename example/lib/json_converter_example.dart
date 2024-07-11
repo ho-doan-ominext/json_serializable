@@ -27,7 +27,7 @@ class _DateTimeEpochConverter implements JsonConverter<DateTime, int> {
   const _DateTimeEpochConverter();
 
   @override
-  DateTime fromJson(int json) => DateTime.fromMillisecondsSinceEpoch(json);
+  DateTime fromJson(int? json) => DateTime.fromMillisecondsSinceEpoch(json);
 
   @override
   int toJson(DateTime object) => object.millisecondsSinceEpoch;
@@ -86,8 +86,8 @@ class _Converter<T> implements JsonConverter<T, Object?> {
 
 @JsonSerializable()
 class CustomResult {
-  final String name;
-  final int size;
+  final String? name;
+  final int? size;
 
   CustomResult(this.name, this.size);
 

@@ -16,8 +16,8 @@ class Tuple<T, S> {
 
   factory Tuple.fromJson(
     Map<String, dynamic> json,
-    T Function(Object? json) fromJsonT,
-    S Function(Object? json) fromJsonS,
+    T? Function(Object? json) fromJsonT,
+    S? Function(Object? json) fromJsonS,
   ) =>
       _$TupleFromJson(json, fromJsonT, fromJsonS);
 

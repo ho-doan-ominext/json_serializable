@@ -8,10 +8,10 @@ part 'example.g.dart';
 
 @JsonSerializable()
 class Person {
-  final String firstName;
+  final String? firstName;
   @JsonKey(includeIfNull: false)
   final String? middleName;
-  final String lastName;
+  final String? lastName;
 
   @JsonKey(name: 'date-of-birth')
   final DateTime dateOfBirth;
@@ -63,8 +63,8 @@ class Order {
   static int? _durationToMilliseconds(Duration? duration) =>
       duration?.inMilliseconds;
 
-  static DateTime _dateTimeFromEpochUs(int us) =>
-      DateTime.fromMicrosecondsSinceEpoch(us);
+  static DateTime _dateTimeFromEpochUs(int? us) =>
+      us == null ? DateTime(1990) : DateTime.fromMicrosecondsSinceEpoch(us);
 
   static int? _dateTimeToEpochUs(DateTime? dateTime) =>
       dateTime?.microsecondsSinceEpoch;

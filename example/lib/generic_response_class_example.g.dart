@@ -8,14 +8,14 @@ part of 'generic_response_class_example.dart';
 
 BaseResponse<T> _$BaseResponseFromJson<T>(Map<String, dynamic> json) =>
     BaseResponse<T>(
-      status: (json['status'] as num?)?.toInt(),
-      msg: json['msg'] as String?,
-      data: BaseResponse._dataFromJson(json['data'] as Object),
+      status: json['status'] is num? ? (json['status'] as num?)?.toInt() : null,
+      msg: json['msg'] is String? ? json['msg'] as String? : null,
+      data: BaseResponse._dataFromJson(json['data']),
     );
 
 Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
-      id: (json['id'] as num).toInt(),
-      title: json['title'] as String,
+      id: json['id'] is num? ? (json['id'] as num?)?.toInt() : null,
+      title: json['title'] is String? ? json['title'] as String? : null,
       author: json['author'] == null
           ? null
           : User.fromJson(json['author'] as Map<String, dynamic>),
@@ -25,11 +25,11 @@ Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
     );
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: (json['id'] as num?)?.toInt(),
-      email: json['email'] as String?,
+      id: json['id'] is num? ? (json['id'] as num?)?.toInt() : null,
+      email: json['email'] is String? ? json['email'] as String? : null,
     );
 
 Comment _$CommentFromJson(Map<String, dynamic> json) => Comment(
-      id: (json['id'] as num?)?.toInt(),
-      content: json['content'] as String?,
+      id: json['id'] is num? ? (json['id'] as num?)?.toInt() : null,
+      content: json['content'] is String? ? json['content'] as String? : null,
     );

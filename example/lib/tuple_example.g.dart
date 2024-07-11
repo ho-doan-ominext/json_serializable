@@ -30,7 +30,7 @@ ConcreteClass _$ConcreteClassFromJson(Map<String, dynamic> json) =>
     ConcreteClass(
       Tuple<int, DateTime>.fromJson(
           json['tuple1'] as Map<String, dynamic>,
-          (value) => (value as num).toInt(),
+          (value) => value is num ? (value as num).toInt() : null,
           (value) => DateTime.parse(value as String)),
       Tuple<Duration, BigInt>.fromJson(
           json['tuple2'] as Map<String, dynamic>,
